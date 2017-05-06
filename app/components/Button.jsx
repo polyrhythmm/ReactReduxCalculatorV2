@@ -12,7 +12,6 @@ var Button = React.createClass({
 
   handleClick: function(e) {
 
-
     var value = this.props.character.toString();
 
     this.state.active = !this.state.active;

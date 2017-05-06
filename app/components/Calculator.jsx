@@ -105,11 +105,16 @@ var Calculator = React.createClass({
        if(this.state.operatorMode === true)
        {
           this.handleEquals(this.state.currentValue, true);
+          this.state.operator = value;
           console.log("handle equals")
        } else {
           this.state.operator = value;
           this.state.operatorMode = true;
        }
+     } else {
+       this.state.operator = value;
+       this.handleEquals(this.state.currentValue, true);
+
      }
 
    },
