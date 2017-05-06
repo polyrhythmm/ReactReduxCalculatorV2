@@ -136,33 +136,34 @@ var Calculator = React.createClass({
      this.changeState( this.state.currentValue);
    },
    handleEquals: function(value, operatorState = false) {
-     console.log(this.state.operator)
-     if(this.state.operator === "+")
-      {
-        console.log("plus");
-        this.handlePlus();
-      }  else if(this.state.operator === '-')
-      {
-        this.handleMinus();
-        console.log('minus')
-      } else if(this.state.operator === '/')
-      {
-        console.log('divide');
-        this.handleDivide();
-      } else if(this.state.operator === '*')
-      {
-        this.handleMultiply();
-        console.log('multiply')
-      }
+     if(this.state.operator !== "=")
+     {
+       if(this.state.operator === "+")
+        {
+          console.log("plus");
+          this.handlePlus();
+        }  else if(this.state.operator === '-')
+        {
+          this.handleMinus();
+          console.log('minus')
+        } else if(this.state.operator === '/')
+        {
+          console.log('divide');
+          this.handleDivide();
+        } else if(this.state.operator === '*')
+        {
+          this.handleMultiply();
+          console.log('multiply')
+        }
 
-      if(operatorState)
-      {
-        this.state.newValue = 0;
-      } else {
-        this.state.newValue = 0;
-        this.state.operatorMode = false;
-      }
-
+        if(operatorState)
+        {
+          this.state.newValue = 0;
+        } else {
+          this.state.newValue = 0;
+          this.state.operatorMode = false;
+        }
+     }
    },
 
    clear: function(value, operatorState) {
