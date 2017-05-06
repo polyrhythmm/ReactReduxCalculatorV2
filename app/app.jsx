@@ -14,3 +14,6 @@ ReactDOM.render(
     <Calculator/>,
     document.getElementById('app')
 );
+
+//require('./redux-example.jsx');
+require('./redux-calculator-example')
