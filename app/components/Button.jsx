@@ -4,13 +4,16 @@ var Button = React.createClass({
 
   getInitialState: function(){
     return {
-      active: false
+      active: false,
+      btnClassName: "button"
     }
   },
 
 
   handleClick: function(e) {
-    var value = this.refs.btn.innerHTML;
+
+
+    var value = this.props.character.toString();
 
     this.state.active = !this.state.active;
 
@@ -18,11 +21,8 @@ var Button = React.createClass({
     {
       this.props.onNumberChange(Number(value));
     } else {
-      this.props.onOperatorChange(value);
+      this.props.onOperatorChange(value, false);
     }
-
-
-
   },
 
   render: function() {
@@ -30,20 +30,9 @@ var Button = React.createClass({
     var {active} = this.state;
 
 
-    var returnButton = () => {
 
-            if(operator)
-            {
-              console.log("operator");
-              return <button type="button" ref="btn" className="button success" onClick={this.handleClick}>{character}</button>
-            } else {
-              return <button type="button" ref="btn" className="button" onClick={this.handleClick}>{character}</button>
-            }
-
-
-    }
     return (
-        returnButton()
+        <button className="button" type="button" ref="btn" onClick={this.handleClick}><span className="button-text">{character}</span></button>
     )
   }
 });

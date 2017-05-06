@@ -3,4 +3,8 @@
 @import "base/foundation-settings";
 @import "foundation";
 @include foundation-everything;
- 
+
+@import "components/main";
+@import "components/button";
+@import "components/title-text";
+@import "components/display-output";
