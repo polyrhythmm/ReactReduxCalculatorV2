@@ -10,7 +10,8 @@ var Calculator = React.createClass({
      currentValue:0,
      newValue:0,
      operatorMode: false,
-     operator: undefined
+     operator: undefined,
+     firstRun: true
    };
  },
 
@@ -50,9 +51,13 @@ var Calculator = React.createClass({
             console.log("catch 8", this.state.currentValue);
             if(this.state.currentValue === 0)
             {
-
               this.state.currentValue += Number(value).toString();
+            }
 
+            if(this.state.firstRun)
+            {
+              this.state.currentValue += Number(value).toString();
+              this.state.firstRun = false;
             }
           }
        }
@@ -171,7 +176,7 @@ var Calculator = React.createClass({
      this.state.newValue = 0;
      this.operatorMode = false;
      this.operator = undefined;
-
+     this.state.firstRun = true;
      this.changeState(this.state.currentValue);
    },
   changeState: function(value) {
