@@ -42,23 +42,16 @@ var Calculator = React.createClass({
        } else {
           console.log("catch 6");
           if(value === "."){
+            console.log("catch 15");
             if(this.state.currentValue.toString().indexOf(".") === -1)
             {
-              console.log("catch 7");
+                console.log("catch 16");
                 this.state.currentValue += value.toString();
             }
           } else {
-            console.log("catch 8", this.state.currentValue);
-            if(this.state.currentValue === 0)
-            {
+              console.log("catch 17")
               this.state.currentValue += Number(value).toString();
-            }
 
-            if(this.state.firstRun)
-            {
-              this.state.currentValue += Number(value).toString();
-              this.state.firstRun = false;
-            }
           }
        }
 
