@@ -51,11 +51,15 @@ var reducer = (state = stateDefault, action) => {
   console.log(action);
 }
 
-var store = redux.createStore(reducer);
+var store = redux.createStore(reducer, redux.compose (
+  window.devToolsExtension ? window.devToolsExtension() : f => f
+));
 
+store.subscribe(() => {
+  console.log(store.getState())
+})
 var currentState = store.getState();
 
-console.log('currentState', currentState);
 
 
 
@@ -87,8 +91,3 @@ store.dispatch({
 store.dispatch({
   type: "HANDLE_EQUALS"
 });
-
-
-
-
-console.log('display should 123', store.getState());
