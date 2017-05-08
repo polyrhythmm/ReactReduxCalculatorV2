@@ -10,6 +10,7 @@ var Calculator = React.createClass({
      currentValue:0,
      newValue:0,
      operatorMode: false,
+     equalsUsed: false,
      operator: undefined,
      firstRun: true
    };
@@ -25,33 +26,43 @@ var Calculator = React.createClass({
        if(this.state.currentValue === 0)
        {
                 console.log("catch 2");
-               if(value === ".")
-               {
-                      console.log("catch 3");
-                       if(this.state.currentValue.toString().indexOf(".") === -1)
-                       {
-                         console.log("catch 4");
-                         this.state.currentValue = "0" + value;
-                       }
+              if(!this.state.equalsUsed)
+              {
+                if(value === ".")
+                {
+                       console.log("catch 3");
+                        if(this.state.currentValue.toString().indexOf(".") === -1)
+                        {
+                          console.log("catch 4");
+                          this.state.currentValue = "0" + value;
+                        }
 
-               } else if(value !== 0)
-               {
-                  console.log("catch 5");
-                  this.state.currentValue = value.toString().substring(0, value.length).toString();
-               }
+                } else if(value !== 0)
+                {
+                   console.log("catch 5");
+                   this.state.currentValue = value.toString();
+                }
+              }
+
        } else {
           console.log("catch 6");
           if(value === "."){
-            console.log("catch 15");
+            console.log("catch 7");
             if(this.state.currentValue.toString().indexOf(".") === -1)
             {
-                console.log("catch 16");
+                console.log("catch 8");
                 this.state.currentValue += value.toString();
             }
           } else {
-              console.log("catch 17")
-              this.state.currentValue += Number(value).toString();
-
+              console.log("catch 9")
+              console.log(this.state.operatorMode)
+              if(!this.state.equalsUsed)
+              {
+                this.state.currentValue += Number(value).toString();
+              } else {
+                this.state.currentValue = Number(value).toString();
+                this.state.equalsUsed = false;
+              }
           }
        }
 
@@ -59,35 +70,37 @@ var Calculator = React.createClass({
    } else {
 
 
-        console.log("catch 9");
+        console.log("catch 10");
          if(this.state.newValue === 0)
          {
-           console.log("catch 10");
+           console.log("catch 11");
            if(value === ".")
            {
-             console.log("catch 11");
+             console.log("catch 12");
              if(this.state.newValue.toString().indexOf(".") === -1)
              {
-              console.log("catch 12");
+              console.log("catch 13");
                this.state.newValue = "0" + value;
              }
            } else if(value !== 0)
            {
-             console.log("catch 13");
-              this.state.newValue = value.toString().substring(0, value.length).toString();
+             console.log("catch 14");
+              this.state.newValue = value.toString()
            }
        } else {
-         console.log("catch 14");
+         console.log("catch 15");
 
           if(value === "."){
-            console.log("catch 15");
+            console.log("catch 16");
             if(this.state.newValue.toString().indexOf(".") === -1)
             {
-                console.log("catch 16");
+                console.log("catch 17");
+                console.log(this.state.operatorMode)
                 this.state.newValue += value.toString();
             }
           } else {
-              console.log("catch 17")
+              console.log("catch 18")
+              console.log(this.state.operatorMode)
               this.state.newValue += Number(value).toString();
           }
        }
@@ -154,6 +167,8 @@ var Calculator = React.createClass({
           console.log('multiply')
         }
 
+        this.state.equalsUsed = true;
+
         if(operatorState)
         {
           this.state.newValue = 0;
@@ -170,6 +185,7 @@ var Calculator = React.createClass({
      this.operatorMode = false;
      this.operator = undefined;
      this.state.firstRun = true;
+     this.state.equalsUsed = false;
      this.changeState(this.state.currentValue);
    },
   changeState: function(value) {
@@ -177,7 +193,7 @@ var Calculator = React.createClass({
 
     if(value % 1 != 0)
     {
-      num = Number(value).toFixed(2).toString()
+      num = Number(value).toString()
     }
     this.setState( {
       display : num
