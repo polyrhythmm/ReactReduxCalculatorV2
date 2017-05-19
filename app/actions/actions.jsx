@@ -12,21 +12,16 @@ export var changeOperator = (operator) => {
   }
 }
 
-export var changeNumberInit = (currentValue) => {
-  return {
-    type: "CHANGE_NUMBER_INIT",
-    currentValue
-  }
-}
-
-export var changeNumber = (newValue) => {
+export var changeNumber = (currentValue, newValue = 0) => {
   return {
     type: "CHANGE_NUMBER",
+    currentValue,
     newValue
   }
 }
 
 export var changeOperatorMode = (operatorMode) => {
+
   return {
     type: "CHANGE_OPERATOR_MODE",
     operatorMode
@@ -46,8 +41,22 @@ export var changeEqualsUsed = (equalsUsed) => {
     equalsUsed
   }
 }
-export var handleEquals = () => {
+export var handleEquals = (value, operatorState) => {
   return {
-    type: "HANDLE_EQUALS"
+    type: "HANDLE_EQUALS",
+    value,
+    operatorState
+  }
+}
+export var handleClear = (currentValue = 0, newValue = 0, operatorMode = false, operator = undefined, firstRun = true, equalsUsed = false, display = "0") => {
+  return {
+    type: "HANDLE_CLEAR",
+    currentValue,
+    newValue,
+    operatorMode,
+    operator,
+    firstRun,
+    equalsUsed,
+    display
   }
 }

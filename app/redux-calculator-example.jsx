@@ -14,7 +14,7 @@ store.dispatch(actions.changeDisplay("123"));
 //
 store.dispatch(actions.changeOperator("/"));
 //
-store.dispatch(actions.changeNumberInit(123));
+//store.dispatch(actions.changeNumberInit(123));
 //
 store.dispatch(actions.changeNumber(456));
 //
@@ -24,4 +24,4 @@ store.dispatch(actions.changeFirstRun(false));
 
 store.dispatch(actions.changeEqualsUsed(true))
 
-store.dispatch(actions.handleEquals())
+store.dispatch(actions.handleEquals("/", true))

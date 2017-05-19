@@ -1,4 +1,5 @@
 var React = require('react');
+var {connect} = require('react-redux');
 
 var OutputDisplay = React.createClass({
 
@@ -13,4 +14,10 @@ var OutputDisplay = React.createClass({
   }
 });
 
-module.exports = OutputDisplay;
+module.exports = connect(
+  (state) => {
+    return {
+      display : state.display
+    }
+  }
+)(OutputDisplay);
